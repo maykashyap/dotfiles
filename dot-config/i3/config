@@ -140,7 +140,7 @@ set $ws10 "0"
 set $monitor_left "DP-2"
 set $monitor_right "DP-0"
 
-workspace $ws10 output "DP-2"
+#workspace $ws10 output "DP-2"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
