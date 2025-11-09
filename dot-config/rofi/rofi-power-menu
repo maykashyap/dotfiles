@@ -13,7 +13,7 @@ set -e
 set -u
 
 # All supported choices
-all=(shutdown reboot suspend hibernate logout lockscreen)
+all=(shutdown reboot suspend hibernate logout lockscreen windows grub)
 
 # By default, show all (i.e., just copy the array)
 show=("${all[@]}")
@@ -26,6 +26,8 @@ texts[suspend]=" Suspend"
 texts[hibernate]=" Hibernate"
 texts[reboot]=" Reboot"
 texts[shutdown]=" Shut Down"
+texts[windows]=" Windows"
+texts[grub]=" Grub Bootloader"
 
 declare -A icons
 icons[lockscreen]="\Uf033e"
@@ -36,6 +38,8 @@ icons[hibernate]="\Uf02ca"
 icons[reboot]="\Uf0709"
 icons[shutdown]="\Uf0425"
 icons[cancel]="\Uf0156"
+icons[windows]=" "
+icons[grub]="󰘚 "
 
 declare -A actions
 actions[lockscreen]="~/.config/i3/i3lock.sh"
@@ -43,8 +47,10 @@ actions[lockscreen]="~/.config/i3/i3lock.sh"
 actions[logout]="i3-msg exit"
 actions[suspend]="systemctl suspend-then-hibernate"
 actions[hibernate]="systemctl hibernate"
-actions[reboot]="systemctl reboot"
-actions[shutdown]="systemctl poweroff"
+actions[reboot]="systemctl reboot --no-wall"
+actions[shutdown]="systemctl --no-wall poweroff"
+actions[windows]="sudo efibootmgr -n 0004 >/dev/null 2>&1 && systemctl reboot --no-wall"
+actions[grub]="sudo efibootmgr -n 0000 >/dev/null 2>&1 && systemctl reboot --no-wall"
 
 # By default, ask for confirmation for actions that are irreversible
 confirmations=(reboot shutdown logout)
@@ -223,7 +229,7 @@ echo -e "\0no-custom\x1ftrue"
 echo -e "\0markup-rows\x1ftrue"
 
 if [ -z "${selection+x}" ]; then
-  echo -e "\0prompt\x1fPower menu"
+  echo -e "\0prompt\x1f 󰐥 "
   for entry in "${show[@]}"; do
     echo -e "${messages[$entry]}\0icon\x1f${icons[$entry]}"
   done
@@ -249,7 +255,7 @@ else
         echo "Selected: $entry" >&2
       else
         # Perform the action
-        ${actions[$entry]}
+        eval "${actions[$entry]}"
       fi
       exit 0
     fi

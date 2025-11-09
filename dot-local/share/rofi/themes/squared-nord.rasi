@@ -2,14 +2,12 @@
 /* Author: Newman Sanchez (https://github.com/newmanls) */
 
 * {
-    font:   "FiraCode Nerd Font Medium 12";
+    bg0:     #111111;
+    bg1:     #15161e;
+    fg0:     #a9b1d6;
 
-    bg0:     #2E3440;
-    bg1:     #3B4252;
-    fg0:     #D8DEE9;
-
-    accent-color:     #88C0D0;
-    urgent-color:     #EBCB8B;
+    accent-color:     #414868;
+    urgent-color:     #f7768e;
 
     background-color:   transparent;
     text-color:         @fg0;

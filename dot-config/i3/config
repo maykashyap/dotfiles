@@ -59,7 +59,7 @@ bindsym $mod+Shift+q kill
 
 # bindsym $mod+b exec firefox
 bindsym $mod+x exec ~/.config/i3/i3lock.sh 
-bindsym $mod+Shift+x exec rofi -show power-menu -modi "power-menu:$HOME/.config/rofi/rofi-power-menu --choices='logout/reboot/shutdown' --confirm=''" 
+bindsym $mod+Shift+x exec rofi -show power-menu -modi "power-menu:$HOME/.config/rofi/rofi-power-menu --choices='logout/hibernate/reboot/shutdown/windows/grub' --confirm=''" 
 # bindcode 133 --release exec "rofi -show drun -show-icons"
 bindsym $mod+d exec "rofi -show drun -show-icons"
 bindsym $mod+Shift+w exec "rofi -show window -show-icons"

@@ -39,6 +39,9 @@ funtion floating (){
 }
 alias logout="i3-msg exit"
 alias ls="eza --color=always --long --git --icons=always --no-user --no-permissions --all"
+funtion lt(){
+  eza --color=always --long --git --icons=always --no-user --all --tree --level $1 --no-permissions
+}
 function tma () {
   tmux attach -t $1
 }
@@ -49,6 +52,7 @@ function kbl (){
   echo "Current Keyboard Layout set to: $(setxkbmap -query | grep layout | awk '{ print $2 }')" 
 }
 alias nsr="nvim +SessionRestore"
+alias adbport="adb forward tcp:8022 tcp:8022"
 
 # THEME
 eval "$(starship init zsh)"
@@ -101,5 +105,6 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export PATH=$PATH:/home/mayank/.cargo/bin
 export PATH=$PATH:/home/mayank/.local/bin
+export PAGER=bat
 
 bindkey -v

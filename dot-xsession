@@ -1,2 +1,5 @@
 xbindkeys
 export TERMINAL="/usr/bin/kitty"
+export XDG_MENU_PREFIX=plasma-
+systemctl --user import-environment XDG_MENU_PREFIX
+dbus-update-activation-environment XDG_MENU_PREFIX

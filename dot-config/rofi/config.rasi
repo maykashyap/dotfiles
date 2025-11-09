@@ -1,12 +1,13 @@
 configuration {
   display-drun: " ";
-  display-window: "Windows";
+  display-window: "󰖲 ";
+  display-filebrowser: "󰉋 ";
+  display-recursivebrowser: "󰈔 ";
   drun-display-format: "{name}";
-  font: "JetBrainsMono Nerd Font 10";
-//  show-icons: true;
+  font: "NotoSans Nerd Font Medium 12";
+  show-icons: true;
 }
 
 // @theme "theme.rasi"
 
-//@theme "/home/mayank/.local/share/rofi/themes/simple-tokyonight.rasi"
 @theme "/home/mayank/.local/share/rofi/themes/squared-nord.rasi"
