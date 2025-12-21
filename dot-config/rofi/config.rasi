@@ -10,4 +10,9 @@ configuration {
 
 // @theme "theme.rasi"
 
-@theme "/home/mayank/.local/share/rofi/themes/squared-nord.rasi"
+@theme "squared-nord.rasi"
+
+entry {
+  cursor-width: 0;
+  placeholder-color: "#888888";
+}

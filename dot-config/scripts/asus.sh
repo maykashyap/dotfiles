@@ -1,4 +1,4 @@
 #!/bin/bash
 asusctl profile -n
 
-notify-send "AsusCTL" "Current Profile: $(asusctl profile -p | awk 'a!=Starting {print $NF} {a=$1}')" --app-name="ASUS"
+notify-send "AsusCTL" "Current Profile: $(asusctl profile -p | grep Active | awk '{print $NF}')" --app-name="ASUS"

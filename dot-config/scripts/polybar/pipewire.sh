@@ -16,7 +16,7 @@ VOLUME=$(pamixer --get-volume-human)
 SINK=$(getDefaultSink)
 SOURCE=$(getDefaultSource)
 ICON="󰕾"
-if [[ "$(pactl info | awk -F : '/Default Source:/{print $2}')" =~ "bluez" ]]; then
+if [[ "$(pactl info | awk -F : '/Default Sink:/{print $2}')" =~ "bluez" ]]; then
   ICON="󱡒"
 fi
 case $1 in

@@ -13,7 +13,7 @@ set -e
 set -u
 
 # All supported choices
-all=(shutdown reboot suspend hibernate logout lockscreen windows grub)
+all=(shutdown reboot suspend hibernate logout lockscreen uefi)
 
 # By default, show all (i.e., just copy the array)
 show=("${all[@]}")
@@ -26,8 +26,7 @@ texts[suspend]=" Suspend"
 texts[hibernate]=" Hibernate"
 texts[reboot]=" Reboot"
 texts[shutdown]=" Shut Down"
-texts[windows]=" Windows"
-texts[grub]=" Grub Bootloader"
+texts[uefi]=" Firmware Setup"
 
 declare -A icons
 icons[lockscreen]="\Uf033e"
@@ -38,19 +37,17 @@ icons[hibernate]="\Uf02ca"
 icons[reboot]="\Uf0709"
 icons[shutdown]="\Uf0425"
 icons[cancel]="\Uf0156"
-icons[windows]=" "
-icons[grub]="󰘚 "
+icons[uefi]="󰘚 "
 
 declare -A actions
-actions[lockscreen]="~/.config/i3/i3lock.sh"
+actions[lockscreen]="~/.config/scripts/session-lock.sh lock"
 #actions[switchuser]="???"
-actions[logout]="i3-msg exit"
+actions[logout]="~/.config/scripts/session-lock.sh logout"
 actions[suspend]="systemctl suspend-then-hibernate"
 actions[hibernate]="systemctl hibernate"
 actions[reboot]="systemctl reboot --no-wall"
 actions[shutdown]="systemctl --no-wall poweroff"
-actions[windows]="sudo efibootmgr -n 0004 >/dev/null 2>&1 && systemctl reboot --no-wall"
-actions[grub]="sudo efibootmgr -n 0000 >/dev/null 2>&1 && systemctl reboot --no-wall"
+actions[uefi]="systemctl reboot --firware-setup"
 
 # By default, ask for confirmation for actions that are irreversible
 confirmations=(reboot shutdown logout)
