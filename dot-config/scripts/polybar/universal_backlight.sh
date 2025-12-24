@@ -26,6 +26,6 @@ case $1 in
   if [ $EMONBL -eq -1 ]; then
     echo "󰖙 $IMONBL"
   fi
-  echo "󰖙 ( 󰍹 $EMONBL + 󰌢  $IMONBL )"
+  echo "󰖙 ( 󰍹  $EMONBL + 󰌢  $IMONBL )"
   ;;
 esac

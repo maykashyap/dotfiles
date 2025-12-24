@@ -5,10 +5,10 @@ set $mod Mod4
 # so in the future maybe you want to move all monitor handling to a script that
 # uses i3 ipc to make for a better more dynamic and responsive monitor setup. 
 # right now ich habe kein lust darauf.
-set $monitor_left "DP-1-2"
-set $monitor_right "DP-2"
+set $monitor_left "eDP-2"
+set $monitor_right "DP-1-0"
 
-#workspace $ws10 output "DP-2"
+workspace $ws10 output "eDP-2"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -34,6 +34,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id xss-lock -- ~/.config/i3/i3lock.sh
 exec --no-startup-id dunst
 exec_always --no-startup-id autorandr -c
+exec_always --no-startup-id xbindkeys
 
 #################################################################################
 
@@ -50,7 +51,7 @@ bindsym $mod+Shift+q kill
 # Thine arms, Lord!
 #____________________
 
-# Rofi drun(s)
+# Rofi
 # bindsym $mod+d exec "rofi -show drun -show-icons"
 mode "󰲋 " {
   bindsym x exec rofi -show power-menu -modi "power-menu:$HOME/.config/rofi/rofi-power-menu --choices='logout/hibernate/reboot/shutdown/uefi' --confirm=''" ; mode "default"
@@ -63,7 +64,7 @@ mode "󰲋 " {
   bindsym Escape mode "default"
   bindsym Return mode "default"
   # bindsym $mod+d mode "default"
-  bindcode 133 --release mode "default"
+  # bindcode 133 --release mode "default"
 }
 bindsym $mod+q mode "󰲋 " 
 # bindcode 133 --release mode "󰲋 " 
