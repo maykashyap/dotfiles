@@ -37,13 +37,40 @@ funtion floating (){
   sleep 0.5
   i3-msg "$(xprop -root | awk '/WM_CLASS\(STRINGS\)/{print $NF}') floating enable"
 }
+# Tmux Auto-Attacher/Creator
+function tma() {
+  if [[ -n "$1" ]]; then
+    # Case 1: Argument provided
+    if tmux has-session -t "$1" 2>/dev/null; then
+      # Check if session is already attached
+      local is_attached=$(tmux display-message -p -t "$1" '#{session_attached}')
+      if [[ "$is_attached" -gt 0 ]]; then
+        echo "Error: Session '$1' is already attached elsewhere."
+        return 1
+      else
+        tmux attach -t "$1"
+      fi
+    else
+      # Create new session with provided name
+      tmux new -s "$1"
+    fi
+  else
+    # Case 2: No argument provided
+    # Find the first session that has 0 attachments
+    local unattached_session=$(tmux list-sessions -F '#{session_name} #{session_attached}' 2>/dev/null | awk '$2 == 0 {print $1; exit}')
+
+    if [[ -n "$unattached_session" ]]; then
+      tmux attach -t "$unattached_session"
+    else
+      # No unattached sessions exist, start a new unnamed one
+      tmux new
+    fi
+  fi
+}
 alias logout="i3-msg exit"
 alias ls="eza --color=always --long --git --icons=always --no-user --no-permissions --all"
 funtion lt(){
   eza --color=always --long --git --icons=always --no-user --all --tree --level $1 --no-permissions
-}
-function tma () {
-  tmux attach -t $1
 }
 alias obsidiansync="~/.config/scripts/zsh/ObsidianSync.sh"
 alias clock="tty-clock -S -n -c"
@@ -106,5 +133,11 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 export PATH=$PATH:/home/mayank/.cargo/bin
 export PATH=$PATH:/home/mayank/.local/bin
 export PAGER=bat
+
+# Create a stable symlink to the volatile /tmp/xauth file
+if [ -n "$XAUTHORITY" ] && [ "$XAUTHORITY" != "$HOME/.Xauthority_live" ]; then
+    ln -sf "$XAUTHORITY" "$HOME/.Xauthority_live"
+    export XAUTHORITY="$HOME/.Xauthority_live"
+fi
 
 bindkey -v

@@ -32,9 +32,10 @@ exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id xss-lock -- ~/.config/i3/i3lock.sh
-exec --no-startup-id dunst
-exec_always --no-startup-id autorandr -c
+exec_always --no-startup-id dunst
+exec_always --no-startup-id autorandr -c --match-edid
 exec_always --no-startup-id xbindkeys
+exec_always --no-startup-id ~/.config/scripts/playerctlDunst.sh
 
 #################################################################################
 

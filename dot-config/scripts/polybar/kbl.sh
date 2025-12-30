@@ -19,5 +19,5 @@ if [[ "$1" = "--switch" ]]; then
   fi
   setxkbmap ${LANG[$IT]}
 else
-  echo "$ICON $CURRENT"
+  echo "$ICON ${CURRENT^^}"
 fi
