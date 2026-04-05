@@ -1,4 +1,5 @@
 #!/bin/bash
+PLAYER=$(playerctl -l)
 song=$(playerctl metadata --format "{{ title }}")
 songDesc = $(playerctl metadata --format "{{ artist }}\n{{ album }}")
-notify-send "$song" "$songDesc"
+dunstify -a "$PLAYER[1]" -h $song" "$songDesc"

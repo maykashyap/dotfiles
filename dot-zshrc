@@ -22,11 +22,11 @@ function vol ()
 }
 function ibl ()
 {
-  xbacklight -set $1
+  ~/.config/scripts/polybar/universal_backlight.sh -i --set $1
 }
-function dbl ()
+function ebl ()
 {
-  ddcutil setvcp 10 $1
+  ~/.config/scripts/polybar/universal_backlight.sh -e --set $1
 }
 function bl (){
   xbacklight -set $1
@@ -67,7 +67,7 @@ function tma() {
     fi
   fi
 }
-alias logout="i3-msg exit"
+alias logout="~/.config/scripts/session-lock.sh logout"
 alias ls="eza --color=always --long --git --icons=always --no-user --no-permissions --all"
 funtion lt(){
   eza --color=always --long --git --icons=always --no-user --all --tree --level $1 --no-permissions

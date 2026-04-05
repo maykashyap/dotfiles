@@ -13,7 +13,7 @@ set -e
 set -u
 
 # All supported choices
-all=(shutdown reboot suspend hibernate logout lockscreen uefi)
+all=(shutdown reboot suspend hibernate logout lockscreen uefi windows)
 
 # By default, show all (i.e., just copy the array)
 show=("${all[@]}")
@@ -27,6 +27,7 @@ texts[hibernate]=" Hibernate"
 texts[reboot]=" Reboot"
 texts[shutdown]=" Shut Down"
 texts[uefi]=" Firmware Setup"
+texts[windows]=" Windows"
 
 declare -A icons
 icons[lockscreen]="\Uf033e"
@@ -38,6 +39,7 @@ icons[reboot]="\Uf0709"
 icons[shutdown]="\Uf0425"
 icons[cancel]="\Uf0156"
 icons[uefi]="󰘚 "
+icons[windows]=" "
 
 declare -A actions
 actions[lockscreen]="~/.config/scripts/session-lock.sh lock"
@@ -48,6 +50,7 @@ actions[hibernate]="systemctl hibernate"
 actions[reboot]="systemctl reboot --no-wall"
 actions[shutdown]="systemctl --no-wall poweroff"
 actions[uefi]="systemctl reboot --firware-setup"
+actions[windows]="sudo efibootmgr -n 0005 > /dev/null 2>&1 && systemctl reboot --no-wall"
 
 # By default, ask for confirmation for actions that are irreversible
 confirmations=(reboot shutdown logout)

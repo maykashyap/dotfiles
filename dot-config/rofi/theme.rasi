@@ -24,6 +24,7 @@ color15: #c0caf5;
     background-color:      Black;
     border-color:          White;
     text-color:           White;
+    border-radius: 4px;
 
 }
 /**

@@ -28,7 +28,8 @@ exec --no-startup-id nm-applet
 
 exec --no-startup-id hsetroot -solid "#111111"
 exec --no-startup-id unclutter &
-exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
+# This shit tanks fps man.
+# exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
 exec --no-startup-id /usr/lib/polkit-kde-authentication-agent-1
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id xss-lock -- ~/.config/i3/i3lock.sh
@@ -36,6 +37,7 @@ exec_always --no-startup-id dunst
 exec_always --no-startup-id autorandr -c --match-edid
 exec_always --no-startup-id xbindkeys
 exec_always --no-startup-id ~/.config/scripts/playerctlDunst.sh
+exec --no-startup-id steam -silent
 
 #################################################################################
 

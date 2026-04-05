@@ -1,0 +1,274 @@
+/* property: top right bottom left */
+/* ============================================================
+   Waybar stylesheet — Tokyo Night
+   ============================================================ */
+
+/* ── Color palette ───────────────────────────────────────────
+   Source: https://github.com/folke/tokyonight.nvim
+   ------------------------------------------------------------ */
+@define-color bg #111111;
+@define-color fg #c0caf5;
+@define-color text       #1a1b26;
+
+@define-color color0  #15161e;   /* black */
+@define-color color1  #f7768e;   /* red */
+@define-color color2  #9ece6a;   /* green */
+@define-color color3  #e0af68;   /* yellow */
+@define-color color4  #7aa2f7;   /* blue */
+@define-color color5  #bb9af7;   /* magenta */
+@define-color color6  #7dcfff;   /* cyan */
+@define-color color7  #a9b1d6;   /* white */
+
+@define-color color8  #414868;   /* bright black */
+@define-color color9  #f7768e;   /* bright red */
+@define-color color10 #9ece6a;   /* bright green */
+@define-color color11 #e0af68;   /* bright yellow */
+@define-color color12 #7aa2f7;   /* bright blue */
+@define-color color13 #bb9af7;   /* bright magenta */
+@define-color color14 #7dcfff;   /* bright cyan */
+@define-color color15 #c0caf5;   /* bright white */
+
+/* Marathon */
+@define-color marathon1 #c2fe0b;
+@define-color marathon2 #01ffff;
+@define-color marathon3 #ff0d1a;
+@define-color marathon4 #29324f;
+@define-color marathon5 #59b41d;
+@define-color marathon6 #5200ff;
+@define-color marathon7 #8e8e8e;
+
+
+/* ── Global ──────────────────────────────────────────────────*/
+* {
+  font-family: "JetBrainsMono Nerd Font";
+}
+
+window#waybar {
+  all: unset;
+}
+
+tooltip {
+  background: @bg;
+  color: @color7;
+}
+
+
+/* ── Shared module base ──────────────────────────────────────
+   All modules share this pattern; override per-module below.
+   ------------------------------------------------------------ */
+#battery,
+#clock,
+#clock.date,
+#mpris.icon,
+#mpris.track,
+#mpris.progress,
+#wireplumber,
+#custom-power,
+#tray,
+#custom-kdeconnect,
+#language,
+#submap,
+#workspaces,
+#custom-logo,
+#custom-backlight {
+  margin: 4px 4px 0 0;
+  background: alpha(@bg, .7);
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 4px 8px;
+  transition: all .3s ease;
+}
+
+/* ── Media player ────────────────────────────────────────────*/
+#mpris.icon {
+  color: @color0;
+  background: @color1;
+  margin: 4px 0 0 4px;
+  padding: 0px 8px 0px 8px;
+  border-radius: 8px 0 0 8px;
+}
+#mpris.track {
+  color: @fg;
+  background: @bg;
+  margin: 4px 0 0 0;
+  padding: 0px 8px 0 8px;
+  border-radius: 0px; 
+}
+#mpris.progress {
+  color: @color0;
+  background: alpha(@color15, 0.5);
+  margin: 4px 0 0 0;
+  padding: 0 8px 0 8px;
+  border-radius: 0px 8px 8px 0;
+  border: 1px solid @bg;
+}
+
+/* ── Audio ───────────────────────────────────────────────────*/
+#wireplumber {
+  background: alpha(@marathon1, .6);
+  margin: 4px 4px 0 4px;
+  color: @marathon4;
+  border: 1px solid @marathon4;
+}
+
+#custom-kdeconnect,
+#custom-power {
+  color: @marathon2;
+  background: alpha(@marathon4, .7);
+  border: 1px solid @color7;
+}
+
+#custom-power {
+  margin: 4px 0 0 0;
+  padding: 0 8px 0 8px;
+  border-radius: 8px 0 0 8px;
+  border-right: none;
+}
+
+#custom-kdeconnect {
+  margin: 4px 0 0 0;
+  padding: 0px 12px 0px 8px;
+  border-left: 1px solid @color7;
+  border-radius: 0 0px 0px 0;
+  border-right: none;
+}
+
+/* ── Tray ────────────────────────────────────────────────────*/
+#tray {
+  background: alpha(@color8, .5);
+  margin: 4px 0px 0px 0px;
+  padding: 0 8px 0 8px;
+  border: 1px solid @color7;
+  border-radius: 0 10px 10px 0;
+}
+
+#tray menu *,
+#tray menu separator {
+  padding: 0 5px;
+  transition: all .3s ease;
+}
+
+/* ── Workspaces ──────────────────────────────────────────────*/
+#workspaces {
+  background: alpha(@bg, .7);
+  margin: 4px 0 0 0;
+  padding: 0 8px 0 6px;
+  border: none;
+  border-radius: 15px;
+  text-shadow: none;
+}
+#workspaces button {
+  all: unset;
+  padding: 0 4px;
+  margin: 0px 2px 0px 2px;
+  color: @color5;
+  font-size: 8px;
+  transition: all .2s ease;
+}
+#workspaces button.visible {
+  color: @color2;
+  font-size: 10px;
+}
+#workspaces button.active {
+  color: @color2;
+  font-size: 15px;
+}
+#workspaces button.urgent {
+  color: @color1;
+  font-size: 15px;
+}
+
+#workspaces button:hover,
+#workspaces button.visible:hover, 
+#workspaces button.active:hover,
+#workspaces button.urgent:hover{
+  opacity: .5;
+  transition: opacity .2s ease;
+}
+#workspaces:hover {
+  border: 1px solid @fg;
+  transition: all .2s ease;
+}
+
+#submap {
+  color: @marathon4;
+  background: @color1;
+  border: 1px solid @marathon4;
+  font-size: 15px;
+  border-radius: 15px ;
+  margin: 6px 4px 2px 0;
+  padding: 0 12px 0 8px;
+}
+
+#language {
+  color: @marathon5;
+  padding: 0 8px 0 8px;
+}
+
+#custom-backlight {
+  margin: 4px 0 0 0;
+  color: @marathon1;
+  background: alpha(@marathon7, .5);
+  border: 1px solid @bg;
+  border-radius: 8px 0 0 8px;
+}
+
+/* ── Battery ─────────────────────────────────────────────────*/
+#battery {
+  border-radius: 0 8px 8px 0;
+  border: 1px solid @bg;
+  border-left: none;
+  color: @bg;
+  transition: color .2s, border-color .2s;
+}
+#battery.discharging {
+  background: @color3;
+}
+#battery.charging {
+  background: @color4;
+}
+#battery.full,
+#battery.plugged {
+  background: @color2;
+}
+#battery.warning:not(.charging) {
+  background: @color11;
+}
+#battery.critical:not(.charging) {
+  background: @color1;
+}
+
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.35; }
+  100% { opacity: 1; }
+}
+
+/* ── Clock ───────────────────────────────────────────────────*/
+#clock.date {
+  color: @marathon4;
+  background: @color5;
+  margin: 4px 3px 0 0;
+  border-radius: 8px 0 0 8px;
+}
+
+#clock {
+  color: @color0;
+  background: alpha(@color7, .9);
+  border-radius: 0px 8px 8px 0px;
+  border: 1px solid alpha(@bg, .7);
+}
+#clock.date:hover,
+#clock:hover {
+  color: @color8;
+}
+
+#custom-logo {
+  background:#1793d1;
+  color: @bg;
+  font-size: 15px;
+  margin: 6px 4px 2px 0;
+  padding: 0 10px 0 6px;
+  border: 1px solid @bg;
+  border-radius: 20px;
+}

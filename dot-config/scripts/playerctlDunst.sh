@@ -4,9 +4,15 @@
 NOTIF_ID=9910                  # Static ID so notifications replace each other
 ICON_PATH="/tmp/mpris_art.png" # Temporary location for album art
 
-# Listen for metadata changes using playerctl
-playerctl metadata --follow --format \
-  "{{title}}|{{artist}}|{{album}}|{{mpris:artUrl}}" | while IFS="|" read -r title artist album art_url; do
+# Define browsers to ignore (comma-separated)
+# Common identifiers: firefox, chromium, brave, google-chrome
+IGNORE_PLAYERS="firefox"
+
+# Listen for metadata changes
+# 1. Added --ignore-player flag
+# 2. Added {{playerName}} to the end of the format string
+playerctl metadata --follow --ignore-player="firefox" --format \
+  "{{title}}|{{artist}}|{{album}}|{{mpris:artUrl}}|{{playerName}}" | while IFS="|" read -r title artist album art_url player_raw; do
 
   # Skip if title is empty (prevents errors on player close)
   [[ -z "$title" ]] && continue
@@ -25,10 +31,13 @@ playerctl metadata --follow --format \
     ICON_ARG="-i audio-x-generic"
   fi
 
+  # Format the Player Name:
+  # Capitalize the first letter (e.g., 'spotify' becomes 'Spotify')
+  PLAYER_NAME=$(echo "$player_raw" | sed 's/./\U&/')
+
   # Send the notification
-  # -r: replaces the previous notification
-  # -a: sets the app name
-  dunstify -r "$NOTIF_ID" $ICON_ARG -a "Media Player" \
+  # -a: now uses the dynamic $PLAYER_NAME
+  dunstify -r "$NOTIF_ID" $ICON_ARG -a "$PLAYER_NAME" \
     "$title" \
     "$artist\n$album"
 

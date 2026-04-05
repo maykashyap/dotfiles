@@ -4,4 +4,4 @@ ENABLED="$(xinput list-props $DEVICE_ID | grep -Po 'Enabled.*:.*\K\d+')"
 xinput set-prop $DEVICE_ID "Device Enabled" $((1 - $ENABLED))
 ICONS=("󱊨 " "󰌌 ")
 DESC=("enabled" "disabled")
-dunstify -h string:x-dunst-stack-tag:tp_toggle "${ICONS[$ENABLED]}" "Touchpad ${DESC[$ENABLED]}" -a "user-config"
+dunstify -h string:x-dunst-stack-tag:tp_toggle "${ICONS[$ENABLED]}" "Touchpad <b>${DESC[$ENABLED]}</b>." -a "user-config"

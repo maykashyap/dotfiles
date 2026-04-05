@@ -503,15 +503,31 @@ parser.add_argument('-w', '--whitelist', help="permit a player by it's bus name 
                     action='append',
                     metavar="BUS_NAME",
                     default=[])
-parser.add_argument('-f', '--format', default='{icon} {:artist:{artist} - :}{:title:{title}:}{:-title:{filename}:}')
+parser.add_argument('-f', '--format', default=None)
 parser.add_argument('--truncate-text', default='…')
 parser.add_argument('--icon-playing', default='⏵')
 parser.add_argument('--icon-paused', default='⏸')
 parser.add_argument('--icon-stopped', default='⏹')
 parser.add_argument('--icon-none', default='')
+parser.add_argument('--part', help="output only a specific part of the status",
+                    choices=['icon', 'track', 'progress', 'all'],
+                    default='all')
 args = parser.parse_args()
 
-FORMAT_STRING = re.sub(r'%\{(.*?)\}(.*?)%\{(.*?)\}', r'􏿿p􏿿\1􏿿p􏿿\2􏿿p􏿿\3􏿿p􏿿', args.format)
+# --part presets (overridden by an explicit -f)
+PART_FORMATS = {
+    'icon':     '{icon}',
+    'track':    '{:artist:t20:{artist}:}{:artist: - :}{:t20:{title}:}',
+    'progress': '{position}/{fmt-length}',
+    'all':      '{icon} {:artist:t20:{artist}:}{:artist: - :}{:t20:{title}:} [{position}/{fmt-length}]',
+}
+
+if args.format is not None:
+    _format = args.format
+else:
+    _format = PART_FORMATS[args.part]
+
+FORMAT_STRING = re.sub(r'%\{(.*?)\}(.*?)%\{(.*?)\}', r'􏿿p􏿿\1􏿿p􏿿\2􏿿p􏿿\3􏿿p􏿿', _format)
 NEEDS_POSITION = "{position}" in FORMAT_STRING
 
 TRUNCATE_STRING = args.truncate_text

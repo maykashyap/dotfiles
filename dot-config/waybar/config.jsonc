@@ -1,0 +1,154 @@
+{
+  // ── Bar layout ────────────────────────────────────────────────────────────
+  "layer": "bottom",
+  "position": "top",
+  "output": "DP-1",
+  "reload_style_on_change": true,
+  "modules-left": [
+    "mpris#icon",
+    "mpris#track",
+    "mpris#progress",
+    "wireplumber",
+    "custom/power",
+    "custom/kdeconnect",
+    "tray"
+  ],
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+  "modules-right": [
+    "hyprland/submap",
+    "hyprland/language",
+    "custom/backlight",
+    "battery",
+    "clock#date",
+    "clock",
+    "custom/logo"
+  ],
+  "mpris#icon": {
+    "format": "{status_icon}",
+    "status-icons": {
+      "playing": "󰎈",
+      "paused": "󰌪",
+      "stopped": ""
+    },
+    "on-click": "playerctl play-pause",
+    "tooltip": true,
+    "tooltip-format": "{player}"
+  },
+  "mpris#track": {
+    "format": "{artist} - {title}",
+    "format-stopped": "",
+    "on-click": "playerctl play-pause",
+    "artist-len": 20,
+    "title-len": 20,
+    "tooltip": false
+  },
+  "mpris#progress": {
+    "format": "{position}/{length}",
+    "on-click": "playerctl previous",
+    "on-click-right": "playerctl next",
+    "format-stopped": "",
+    "interval": 1,
+    "tooltip": false
+  },
+  // ── Audio ─────────────────────────────────────────────────────────────────
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟",
+    "format-icons": [
+      "󰕾"
+    ],
+    "on-click": "pavucontrol",
+    "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
+  },
+  "custom/power": {
+    "format": "{}",
+    "exec": "~/.config/scripts/polybar/power.sh",
+    "on-click": "~/.config/scripts/polybar/power.sh next",
+    "interval": 1,
+    "tooltip": false
+  },
+  "custom/kdeconnect": {
+    "format": "{}",
+    "exec": "~/.config/scripts/polybar/kdeconnect.sh",
+    "on-click": "kdeconnect-app",
+    "interval": 5
+  },
+  // ── System tray ───────────────────────────────────────────────────────────
+  "tray": {
+    "icon-size": 14,
+    "spacing": 10
+  },
+  // ── Hyprland ──────────────────────────────────────────────────────────────
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{icon}",
+    /*  󰝣󰨓󰝤*/
+    "format-icons": {
+      "active": "",
+      "visible": "",
+      "default": "",
+      "urgent": "󰀨"
+    }
+  },
+  "hyprland/submap": {
+    "format": "{}"
+  },
+  "hyprland/language": {
+    "format": "󰌌 {}",
+    "format-en": "en",
+    "format-de": "de"
+  },
+  "custom/backlight": {
+    "exec": "brightnessctl -m | awk -F, '{print $4}'",
+    "interval": 1, // Poll every second
+    "format": "󰃠 {}",
+    "on-scroll-up": "brightnessctl set 1%+",
+    "on-scroll-down": "brightnessctl set 1%-",
+    "tooltip": false
+  },
+  // ── Battery ───────────────────────────────────────────────────────────────
+  "battery": {
+    "interval": 1,
+    "bat": "BAT1",
+    "adapter": "ACAD",
+    "states": {
+      "warning": 30,
+      "critical": 10
+    },
+    "format": "{icon} {capacity}% · {power:.1f}W · {time}",
+    "format-charging": "{icon} 󱐋 {capacity}% · {power:.1f}W",
+    "format-full": "󱟢 {capacity}%",
+    "format-critical": "{icon} {capacity}% · {power:.1f}W · {time}",
+    "format-icons": [
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂"
+    ],
+    "tooltip-format": "{timeTo} — {power:.1f}W"
+  },
+  // ── Clock ─────────────────────────────────────────────────────────────────
+  "clock#date": {
+    "format": "{:%d.%m.%Y}",
+    "tooltip": true,
+    "tooltip-format": "{:%A, %d %B %Y}"
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%H:%M:%S}",
+    "tooltip-format": "{:%A, %d %B %Y}"
+  },
+  "custom/logo": {
+    "format": "󰣇",
+    "tooltip": false
+  }
+}
