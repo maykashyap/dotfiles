@@ -1,12 +1,9 @@
-/* ROFI SQUARED THEME USING THE NORD PALETTE  */
-/* Author: Newman Sanchez (https://github.com/newmanls) */
-
 * {
     bg0:     #111111;
     bg1:     #15161e;
     fg0:     #a9b1d6;
 
-    accent-color:     #414868;
+    accent-color:     #7dcfff;
     urgent-color:     #f7768e;
 
     background-color:   transparent;
@@ -14,49 +11,66 @@
 
     margin:     0;
     padding:    0;
-    spacing:    0;
+    spacing:    4;
 
-    border-radius: 4px;
+    border-radius: 10px;
 }
 
 window {
-    location:   center;
-    width:      480;
+    location:   south east;
+    width:      300;
+    margin: 0 4px 4px 0;
+    children: [ listview, inputbar];
 
-    background-color:   @bg0;
+    background-color:   transparent;
 }
 
 inputbar {
-    spacing:    8px;
-    padding:    8px;
-
-    background-color:   @bg1;
+    background-color:   transparent;
 }
 
 prompt, entry, element-icon, element-text {
     vertical-align: 0.5;
 }
-
+entry {
+    text-color: @bg0;
+    background-color: #c0caf5;
+    border: 0px;
+    border-color: @bg1;
+    margin: 0 -10 0 0;
+    padding: 16px;
+}
 prompt {
-    text-color: @accent-color;
+    padding:   16px; 
+    background-color: #bb9af7;
+    text-color: @bg0;
+    border: 0px;
+    border-color: @bg1;
 }
 
 textbox {
-    padding:            8px;
-    background-color:   @bg1;
+    padding:  8px;
 }
 
 listview {
-    padding:    4px 0;
+    padding:    0;
+    margin: 0 0 0 55px;
     lines:      8;
     columns:    1;
+    spacing:    0;
+    reverse: true;
 
     fixed-height:   false;
+    border-radius: 10px;
+    border: 2px;
+    border-color: @accent-color;
 }
 
 element {
-    padding:    8px;
     spacing:    8px;
+    padding:    10px 8px 10px 13px;
+    background-color:   @bg1;
+    border-radius: 0px;
 }
 
 element normal normal {
@@ -75,11 +89,8 @@ element alternate active {
     text-color: @accent-color;
 }
 
-element selected {
+element selected, element selected normal, element selected active {
     text-color: @bg0;
-}
-
-element selected normal, element selected active {
     background-color:   @accent-color;
 }
 
@@ -88,7 +99,8 @@ element selected urgent {
 }
 
 element-icon {
-    size:   0.8em;
+    padding: 0px 0px 0px 5px;
+    size:   0.7em;
 }
 
 element-text {

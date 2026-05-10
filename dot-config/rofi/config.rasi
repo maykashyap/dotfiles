@@ -14,5 +14,6 @@ configuration {
 
 entry {
   cursor-width: 0;
-  placeholder-color: "#888888";
+  placeholder-color: #888888;
+  placeholder: "Search";
 }

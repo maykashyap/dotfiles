@@ -22,8 +22,8 @@ case "$1" in
     waybar &
     hyprctl keyword general:gaps_in 4
     hyprctl keyword general:gaps_out 4
-    hyprctl keyword decoration:rounding 8
-    hyprctl keyword decoration:rounding_power 8
+    hyprctl keyword decoration:rounding 10
+    hyprctl keyword decoration:rounding_power 10
   else
     killall waybar
     hyprctl keyword general:gaps_in 1

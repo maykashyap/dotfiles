@@ -1,8 +1,7 @@
 {
-  // ── Bar layout ────────────────────────────────────────────────────────────
   "layer": "bottom",
   "position": "top",
-  "output": "DP-1",
+  "output": "HDMI-A-1",
   "reload_style_on_change": true,
   "modules-left": [
     "mpris#icon",
@@ -52,7 +51,6 @@
     "interval": 1,
     "tooltip": false
   },
-  // ── Audio ─────────────────────────────────────────────────────────────────
   "wireplumber": {
     "format": "{icon} {volume}%",
     "format-muted": "󰝟",
@@ -77,16 +75,13 @@
     "on-click": "kdeconnect-app",
     "interval": 5
   },
-  // ── System tray ───────────────────────────────────────────────────────────
   "tray": {
     "icon-size": 14,
     "spacing": 10
   },
-  // ── Hyprland ──────────────────────────────────────────────────────────────
   "hyprland/workspaces": {
     "all-outputs": true,
     "format": "{icon}",
-    /*  󰝣󰨓󰝤*/
     "format-icons": {
       "active": "",
       "visible": "",
@@ -104,13 +99,12 @@
   },
   "custom/backlight": {
     "exec": "brightnessctl -m | awk -F, '{print $4}'",
-    "interval": 1, // Poll every second
+    "interval": 1,
     "format": "󰃠 {}",
     "on-scroll-up": "brightnessctl set 1%+",
     "on-scroll-down": "brightnessctl set 1%-",
     "tooltip": false
   },
-  // ── Battery ───────────────────────────────────────────────────────────────
   "battery": {
     "interval": 1,
     "bat": "BAT1",
@@ -136,7 +130,6 @@
     ],
     "tooltip-format": "{timeTo} — {power:.1f}W"
   },
-  // ── Clock ─────────────────────────────────────────────────────────────────
   "clock#date": {
     "format": "{:%d.%m.%Y}",
     "tooltip": true,
