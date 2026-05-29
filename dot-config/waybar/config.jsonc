@@ -48,7 +48,7 @@
     "on-click": "playerctl previous",
     "on-click-right": "playerctl next",
     "format-stopped": "",
-    "interval": 1,
+    "interval": 5,
     "tooltip": false
   },
   "wireplumber": {
@@ -66,14 +66,14 @@
     "format": "{}",
     "exec": "~/.config/scripts/polybar/power.sh",
     "on-click": "~/.config/scripts/polybar/power.sh next",
-    "interval": 1,
+    "interval": 10,
     "tooltip": false
   },
   "custom/kdeconnect": {
     "format": "{}",
     "exec": "~/.config/scripts/polybar/kdeconnect.sh",
     "on-click": "kdeconnect-app",
-    "interval": 5
+    "interval": 20
   },
   "tray": {
     "icon-size": 14,
@@ -99,14 +99,14 @@
   },
   "custom/backlight": {
     "exec": "brightnessctl -m | awk -F, '{print $4}'",
-    "interval": 1,
+    "interval": 20,
     "format": "󰃠 {}",
     "on-scroll-up": "brightnessctl set 1%+",
     "on-scroll-down": "brightnessctl set 1%-",
     "tooltip": false
   },
   "battery": {
-    "interval": 1,
+    "interval": 10,
     "bat": "BAT1",
     "adapter": "ACAD",
     "states": {
@@ -136,8 +136,8 @@
     "tooltip-format": "{:%A, %d %B %Y}"
   },
   "clock": {
-    "interval": 1,
-    "format": "{:%H:%M:%S}",
+    "interval": 30,
+    "format": "{:%H:%M}",
     "tooltip-format": "{:%A, %d %B %Y}"
   },
   "custom/logo": {
