@@ -2,7 +2,7 @@ notify = true
 use_nerdfont = true
 
 [theme]
-background = "#1a1b26"
+background = "#111111"
 primary = "#9aa5ce"
 secondary = "#414868"
 title = "#9ece6a"
